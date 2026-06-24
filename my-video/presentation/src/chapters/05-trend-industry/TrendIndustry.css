@@ -1,0 +1,382 @@
+.ti-stage {
+  position: absolute;
+  inset: 0;
+  background: #030b18;
+  overflow: hidden;
+}
+
+/* ─── Q2 Frame ─── */
+.ti-qframe {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.ti-qframe__num {
+  font-size: 6rem;
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ti-qframe__text {
+  font-size: 2rem;
+  color: rgba(200, 220, 240, 0.85);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ─── Time Trend ─── */
+.ti-trend {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 6rem;
+  gap: 1.5rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.ti-trend__header {
+  font-size: 1.2rem;
+  color: rgba(200, 220, 240, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.ti-trend__chart {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ti-svg-chart {
+  width: 100%;
+  flex: 1;
+  overflow: visible;
+}
+
+.ti-chart-line {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawLine 2s ease-out forwards;
+}
+
+@keyframes drawLine {
+  to { stroke-dashoffset: 0; }
+}
+
+.ti-trend__labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: rgba(200, 220, 240, 0.4);
+  padding: 0 0.5rem;
+}
+
+.ti-trend__annotations {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ti-tag {
+  padding: 0.4em 1em;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.ti-tag--green { background: rgba(0, 212, 255, 0.15); border: 1px solid rgba(0, 212, 255, 0.4); color: #00d4ff; }
+.ti-tag--orange { background: rgba(255, 140, 0, 0.15); border: 1px solid rgba(255, 140, 0, 0.4); color: #ff8c00; }
+.ti-tag--gold { background: rgba(255, 215, 0, 0.15); border: 1px solid rgba(255, 215, 0, 0.4); color: #ffd700; }
+
+/* ─── Accel ─── */
+.ti-accel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 8rem;
+  gap: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.ti-accel__header {
+  font-size: 1.2rem;
+  color: rgba(200, 220, 240, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.ti-accel__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.ti-accel-bar {
+  display: grid;
+  grid-template-columns: 80px 1fr 120px;
+  align-items: center;
+  gap: 1.5rem;
+  animation: slideInRight 0.5s ease-out both;
+}
+
+.ti-accel-bar__year {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: rgba(200, 220, 240, 0.8);
+}
+
+.ti-accel-bar__track {
+  height: 32px;
+  background: rgba(0, 212, 255, 0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ti-accel-bar__fill {
+  height: 100%;
+  border-radius: 4px;
+  animation: growBar 1s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.ti-accel-bar__val {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffd700;
+  text-align: right;
+}
+
+.ti-accel__label {
+  display: flex;
+  gap: 14rem;
+}
+
+.ti-accel__mul {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+.ti-accel__insight {
+  font-size: 1.1rem;
+  color: rgba(200, 220, 240, 0.6);
+  padding: 0.6rem 1rem;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 3px solid #ffd700;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ─── Industry ─── */
+.ti-industry {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.5rem;
+  padding: 4rem 6rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.ti-industry__header {
+  grid-column: 1 / -1;
+  font-size: 1.2rem;
+  color: rgba(200, 220, 240, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.ti-industry__donut {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ti-donut-svg {
+  width: 220px;
+  height: 220px;
+}
+
+.ti-industry__legend {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.ti-ind-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.ti-ind-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.ti-ind-name {
+  font-size: 1.05rem;
+  color: rgba(200, 220, 240, 0.85);
+  flex: 1;
+}
+
+.ti-ind-pct {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: rgba(200, 220, 240, 0.6);
+}
+
+.ti-industry__insight {
+  grid-column: 1 / -1;
+  font-size: 1.05rem;
+  color: rgba(200, 220, 240, 0.6);
+  padding: 0.6rem 1rem;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 3px solid #ffd700;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ─── Tech Gen ─── */
+.ti-tech {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 8rem;
+  gap: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.ti-tech__header {
+  font-size: 1.2rem;
+  color: rgba(200, 220, 240, 0.5);
+  letter-spacing: 0.1em;
+}
+
+.ti-tech__bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex: 1;
+}
+
+.ti-tech-bar {
+  animation: slideInRight 0.5s ease-out both;
+}
+
+.ti-tech-bar__info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.ti-tech-bar__name {
+  font-size: 1.1rem;
+  color: rgba(200, 220, 240, 0.85);
+}
+
+.ti-tech-bar__pct {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.ti-tech-bar__track {
+  height: 14px;
+  background: rgba(0, 212, 255, 0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.ti-tech-bar__fill {
+  height: 100%;
+  border-radius: 3px;
+  animation: growBar 1s ease-out both;
+}
+
+.ti-tech__insight {
+  font-size: 1.1rem;
+  color: rgba(200, 220, 240, 0.7);
+  padding: 0.8rem 1rem;
+  background: rgba(255, 215, 0, 0.06);
+  border-left: 3px solid #ffd700;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ─── Judgment ─── */
+.ti-judgment {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.ti-judgment__text {
+  font-size: 1.3rem;
+  color: rgba(200, 220, 240, 0.5);
+  letter-spacing: 0.15em;
+}
+
+.ti-judgment__cards {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.ti-judge-card {
+  padding: 1.2rem 2rem;
+  background: rgba(0, 40, 80, 0.4);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #e8f4ff;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.ti-judgment__conclusion {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: rgba(200, 220, 240, 0.85);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ti-judgment__highlight {
+  color: #ffd700;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+/* ─── Animations ─── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes growBar {
+  from { width: 0; }
+}

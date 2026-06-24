@@ -1,0 +1,569 @@
+/* ─────────────────────────────────────────────────────────
+   Chapter 6 · 未来预测 · prefix fc-
+   Stage is 1920 × 1080, design at that scale
+   ───────────────────────────────────────────────────────── */
+
+.fc-stage {
+  position: absolute;
+  inset: 0;
+  background: #030b18;
+  overflow: hidden;
+}
+
+/* ── Q3 ── */
+.fc-qframe {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  animation: fadeIn 0.6s ease-out;
+}
+.fc-qframe__num {
+  font-size: 7rem;
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 0 60px rgba(255, 215, 0, 0.4);
+  animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  line-height: 1;
+}
+.fc-qframe__text {
+  font-size: 2.4rem;
+  color: rgba(200, 220, 240, 0.85);
+  text-align: center;
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+/* ── Models ── */
+.fc-models {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 5.5rem 9rem;
+  gap: 2.6rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fc-models__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.fc-models__kicker {
+  font-size: 0.85rem;
+  color: rgba(0, 212, 255, 0.7);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.fc-models__title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #e8f4ff;
+  letter-spacing: 0.02em;
+}
+
+.fc-models__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 2.4rem;
+  min-height: 0;
+}
+
+.fc-models__table {
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  background: rgba(0, 20, 40, 0.4);
+  backdrop-filter: blur(8px);
+}
+.fc-models__th {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.6fr;
+  padding: 1.1rem 2rem;
+  background: linear-gradient(90deg, rgba(0, 80, 140, 0.6), rgba(0, 40, 80, 0.4));
+  font-size: 0.95rem;
+  color: rgba(200, 220, 240, 0.55);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.fc-model-row {
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.6fr;
+  padding: 1.4rem 2rem;
+  border-top: 1px solid rgba(0, 212, 255, 0.1);
+  align-items: center;
+  animation: slideInRight 0.5s ease-out both;
+  transition: background 0.3s;
+}
+.fc-model-row:hover {
+  background: rgba(0, 212, 255, 0.04);
+}
+.fc-model-row--ok {
+  background: rgba(0, 212, 255, 0.06);
+  border-left: 4px solid #00d4ff;
+  box-shadow: inset 0 0 30px rgba(0, 212, 255, 0.05);
+}
+.fc-model-row__name {
+  font-size: 1.4rem;
+  color: rgba(230, 240, 250, 0.95);
+  font-weight: 500;
+}
+.fc-model-row__r2,
+.fc-model-row__rmse {
+  font-size: 1.3rem;
+  color: rgba(200, 220, 240, 0.75);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.fc-model-row__verdict {
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  letter-spacing: 0.08em;
+}
+.fc-model-row__verdict--fail {
+  color: rgba(255, 140, 90, 0.95);
+}
+.fc-model-row__verdict--ok {
+  color: #00d4ff;
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.5);
+}
+
+.fc-models__insight {
+  font-size: 1.15rem;
+  color: rgba(220, 230, 240, 0.8);
+  padding: 1rem 1.4rem;
+  background: rgba(255, 215, 0, 0.07);
+  border-left: 4px solid #ffd700;
+  border-radius: 0 8px 8px 0;
+  max-width: 1400px;
+  letter-spacing: 0.02em;
+}
+
+.fc-models__sub {
+  font-size: 1rem;
+  color: rgba(200, 220, 240, 0.55);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.fc-models__flow {
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem 1.8rem;
+  background: rgba(0, 20, 40, 0.4);
+  border: 1px solid rgba(0, 212, 255, 0.22);
+  border-radius: 14px;
+  min-height: 0;
+}
+.fc-models__flow-title {
+  font-size: 0.9rem;
+  color: rgba(0, 212, 255, 0.75);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  margin-bottom: 1rem;
+}
+.fc-models__flow-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  justify-content: center;
+}
+.fc-models__flow-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: rgba(0, 212, 255, 0.06);
+  border-left: 3px solid #00d4ff;
+  border-radius: 0 8px 8px 0;
+  animation: slideInRight 0.5s ease-out both;
+}
+.fc-models__flow-num {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #00d4ff;
+  font-family: var(--font-mono);
+  text-shadow: 0 0 16px rgba(0, 212, 255, 0.4);
+  line-height: 1;
+  text-align: center;
+}
+.fc-models__flow-desc {
+  font-size: 1rem;
+  line-height: 1.45;
+  color: rgba(230, 240, 250, 0.95);
+  letter-spacing: 0.02em;
+}
+
+/* ── Numbers — 三情景曲线 ── */
+.fc-numbers {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 3.6rem 5.5rem 4rem;
+  gap: 1.6rem;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.fc-numbers__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.fc-numbers__kicker {
+  font-size: 0.85rem;
+  color: rgba(0, 212, 255, 0.7);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.fc-numbers__title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #e8f4ff;
+  letter-spacing: 0.02em;
+}
+.fc-numbers__sub {
+  font-size: 1rem;
+  color: rgba(200, 220, 240, 0.55);
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+
+.fc-numbers__body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: 2.4rem;
+  min-height: 0;
+}
+
+.fc-numbers__chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 0;
+  padding: 1.2rem 1.4rem;
+  background: rgba(0, 20, 40, 0.4);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 14px;
+}
+.fc-svg {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+.fc-curve {
+  stroke-dasharray: 1800;
+  stroke-dashoffset: 1800;
+  animation: drawCurve 1.4s ease-out forwards;
+}
+.fc-area {
+  animation: fadeIn 1s ease-out forwards;
+}
+.fc-bar {
+  transform-origin: bottom;
+  transform-box: fill-box;
+  animation: growBar 0.9s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+.fc-pt {
+  opacity: 0;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.fc-pt-label {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+.fc-pt-label-bg {
+  opacity: 0;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.fc-bar-label {
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+.fc-bar-label-bg {
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.fc-numbers__legend {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  padding-top: 0.4rem;
+}
+.fc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 1.05rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+.fc-legend-swatch {
+  display: inline-block;
+  width: 30px;
+  height: 4px;
+  border-radius: 2px;
+}
+.fc-legend-label {
+  font-weight: 600;
+}
+
+.fc-numbers__side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  min-height: 0;
+}
+
+.fc-numbers__yearlist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.2rem 1.4rem;
+  background: rgba(0, 20, 40, 0.5);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 12px;
+}
+.fc-numbers__yearlist-title {
+  font-size: 0.85rem;
+  color: rgba(0, 212, 255, 0.7);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  margin-bottom: 0.4rem;
+}
+.fc-numbers__yearline {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed rgba(0, 212, 255, 0.12);
+}
+.fc-numbers__yearline:last-child {
+  border-bottom: 0;
+}
+.fc-numbers__yearline-y {
+  font-size: 1.05rem;
+  color: #FFD166;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.fc-numbers__yearline-v {
+  font-size: 1.6rem;
+  color: #00d4ff;
+  font-weight: 800;
+  font-family: var(--font-mono);
+  text-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+.fc-numbers__yearline-u {
+  font-size: 0.9rem;
+  color: rgba(200, 220, 240, 0.55);
+}
+
+.fc-numbers__cityshift {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.4rem;
+  background: rgba(255, 215, 0, 0.05);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  border-radius: 12px;
+  min-height: 0;
+}
+.fc-numbers__cityshift-title {
+  font-size: 0.85rem;
+  color: rgba(255, 215, 0, 0.85);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  margin-bottom: 0.8rem;
+}
+.fc-numbers__cityshift-track {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.8rem;
+  flex: 1;
+  align-items: center;
+}
+.fc-numbers__cityshift-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.fc-numbers__cityshift-pct {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #ffd700;
+  font-family: var(--font-mono);
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+}
+.fc-numbers__cityshift-pct small {
+  font-size: 1rem;
+  margin-left: 0.1em;
+  color: rgba(255, 215, 0, 0.7);
+  font-weight: 600;
+}
+.fc-numbers__cityshift-y {
+  font-size: 0.95rem;
+  color: rgba(200, 220, 240, 0.7);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+.fc-numbers__cityshift-note {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  color: rgba(200, 220, 240, 0.7);
+  text-align: center;
+  letter-spacing: 0.04em;
+}
+.fc-numbers__cityshift-note .fc-arrow {
+  color: #ffd700;
+  font-weight: 700;
+  margin: 0 0.4em;
+}
+
+/* ── Assumptions ── */
+.fc-assumptions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 5.5rem 9rem;
+  gap: 2.4rem;
+  animation: fadeIn 0.6s ease-out;
+}
+.fc-assumptions__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.fc-assumptions__kicker {
+  font-size: 0.85rem;
+  color: rgba(255, 140, 90, 0.8);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+.fc-assumptions__title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #e8f4ff;
+  letter-spacing: 0.02em;
+}
+.fc-assumptions__sub {
+  font-size: 1.1rem;
+  color: rgba(200, 220, 240, 0.6);
+  letter-spacing: 0.04em;
+}
+
+.fc-assumptions__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+  max-width: 1200px;
+}
+.fc-assum {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 1.8rem;
+  border-radius: 12px;
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.fc-assum--ok {
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+.fc-assum--warn {
+  background: rgba(255, 140, 90, 0.07);
+  border: 1px solid rgba(255, 140, 90, 0.35);
+}
+.fc-assum__icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.fc-assum__text {
+  font-size: 1.25rem;
+  color: rgba(230, 240, 250, 0.95);
+  letter-spacing: 0.02em;
+}
+.fc-assum__tag {
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.16em;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+}
+.fc-assum__tag--ok {
+  background: rgba(0, 212, 255, 0.15);
+  color: #00d4ff;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+}
+.fc-assum__tag--warn {
+  background: rgba(255, 140, 90, 0.15);
+  color: #ff8c5a;
+  border: 1px solid rgba(255, 140, 90, 0.4);
+}
+
+.fc-assumptions__caveat {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 140, 90, 0.95);
+  padding: 1.2rem 1.4rem;
+  background: rgba(255, 140, 90, 0.05);
+  border-left: 4px solid #ff8c5a;
+  border-radius: 0 8px 8px 0;
+  max-width: 1400px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Animations ── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes growBar {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@keyframes drawCurve {
+  to { stroke-dashoffset: 0; }
+}

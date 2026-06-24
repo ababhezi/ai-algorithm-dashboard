@@ -1,0 +1,365 @@
+/* ── Chapter 3 · dashboard-intro · prefix dbi- ── */
+
+/*
+ * Image: 3072×1672 (aspect 1.838). Wrapper: 1920×1045 to match.
+ * Wrapper is centered in the 1920×1080 stage-frame (~17px black bars top/bottom).
+ * All overlays live inside the wrapper, so they share the image's coord space
+ * and zoom with it.
+ */
+
+.dbi-scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--shell, #03080f);
+}
+
+/* ── Stage that holds the wrapper (1920×1080, may letterbox the wrapper) ── */
+.dbi-iframe-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* ── Wrapper matches image aspect ratio ── */
+.dbi-iframe-wrapper {
+  position: relative;
+  width: 1920px;
+  height: 1045px;            /* 1920 / (3072/1672) */
+  transform-origin: center center;
+  transition: transform 1200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  filter: drop-shadow(0 0 60px rgba(0, 180, 220, 0.18));
+}
+.dbi-screenshot {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: fill;
+}
+
+/* ── Overlay layer: absolute fills the wrapper so all % units are image-relative ── */
+.dbi-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Zoom presets per step ── */
+.dbi-zoom-full {
+  transform: scale(1.0);
+}
+.dbi-zoom-kpi {
+  /* Slight zoom for KPI area but keep all 5 callouts visible */
+  transform: scale(1.0);
+}
+.dbi-zoom-map {
+  /* Map is roughly y: 25%..75% of image */
+  transform: scale(1.25) translate(0, -12%);
+}
+.dbi-zoom-structural {
+  /* Slight zoom that keeps both map + SYSTEM BUS visible */
+  transform: scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════
+   Step 2 — Highlight overlay rectangles
+   Image is 1920×1045. Layout zones (approximate, by visual inspection):
+     header : y  1.4%..11.4%   (top bar)
+     kpi    : y 12.0%..20.5%   (5 KPI cards)
+     main   : y 22.0%..82.0%   (left/center/right three columns)
+       left   : x  1.3%..21.5%
+       center : x 22.5%..70.5%
+       right  : x 71.5%..98.7%
+     bottom : y 83.5%..96.0%   (SYSTEM BUS)
+   ═══════════════════════════════════════════════ */
+
+.dbi-highlight {
+  position: absolute;
+  border: 2px solid #4dd2ff;
+  background: rgba(77, 210, 255, 0.06);
+  box-shadow: 0 0 40px rgba(77, 210, 255, 0.4), inset 0 0 40px rgba(77, 210, 255, 0.08);
+  pointer-events: none;
+  opacity: 0;
+  animation: dbi-fade-in 500ms ease forwards;
+}
+.dbi-highlight--header {
+  top: 1.4%;
+  left: 1.3%;
+  width: 97.4%;
+  height: 10.0%;
+  animation-delay: 200ms;
+}
+.dbi-highlight--kpi {
+  top: 12.0%;
+  left: 1.3%;
+  width: 97.4%;
+  height: 8.5%;
+  animation-delay: 500ms;
+}
+.dbi-highlight--left {
+  top: 22.0%;
+  left: 1.3%;
+  width: 20.2%;
+  height: 60.0%;
+  animation-delay: 800ms;
+}
+.dbi-highlight--center {
+  top: 22.0%;
+  left: 22.5%;
+  width: 48.0%;
+  height: 60.0%;
+  animation-delay: 1100ms;
+}
+.dbi-highlight--right {
+  top: 22.0%;
+  left: 71.5%;
+  width: 27.2%;
+  height: 60.0%;
+  animation-delay: 1400ms;
+}
+.dbi-highlight--bottom {
+  top: 83.5%;
+  left: 1.3%;
+  width: 97.4%;
+  height: 12.5%;
+  animation-delay: 1700ms;
+}
+
+/* ── Layout annotation labels (Step 2) ── */
+.dbi-annot-label {
+  position: absolute;
+  font-family: var(--font-mono, "Consolas", "Courier New", monospace);
+  font-size: 13px;
+  color: #4dd2ff;
+  letter-spacing: 0.12em;
+  padding: 5px 12px;
+  border: 1px dashed rgba(77, 210, 255, 0.6);
+  background: rgba(8, 20, 40, 0.88);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  animation: dbi-label-in 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  backdrop-filter: blur(4px);
+  text-shadow: 0 0 8px rgba(77, 210, 255, 0.4);
+}
+.dbi-annot-label--header {
+  top: -0.4%;
+  left: 38%;
+  animation-delay: 250ms;
+}
+.dbi-annot-label--kpi {
+  top: 10.5%;
+  left: 38%;
+  animation-delay: 550ms;
+}
+.dbi-annot-label--left {
+  top: 48%;
+  left: 11%;
+  animation-delay: 850ms;
+}
+.dbi-annot-label--center {
+  top: 48%;
+  left: 46%;
+  animation-delay: 1150ms;
+}
+.dbi-annot-label--right {
+  top: 48%;
+  left: 85%;
+  animation-delay: 1450ms;
+}
+.dbi-annot-label--bottom {
+  top: 82.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: dbi-label-in-bottom 600ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 1750ms;
+}
+
+/* ── Step 0: intro text ── */
+.dbi-intro-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display-cn, "PingFang SC", "Microsoft YaHei", sans-serif);
+  font-size: 56px;
+  font-weight: 500;
+  color: #e8f0fa;
+  text-align: center;
+  animation: dbi-fade-up 800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  z-index: 20;
+  text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+  margin: 0;
+}
+
+/* ── Step 3: KPI card callouts ── */
+.dbi-kpi-callout {
+  position: absolute;
+  padding: 8px 12px;
+  background: rgba(8, 20, 40, 0.94);
+  border: 1px solid #4dd2ff;
+  font-family: var(--font-display-cn, "PingFang SC", "Microsoft YaHei", sans-serif);
+  color: #e8f0fa;
+  font-size: 14px;
+  box-shadow: 0 8px 32px rgba(0, 20, 60, 0.6);
+  opacity: 0;
+  animation: dbi-callout-pop 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  backdrop-filter: blur(6px);
+  white-space: nowrap;
+  width: 18%;
+  box-sizing: border-box;
+  text-align: center;
+}
+.dbi-kpi-callout strong {
+  display: block;
+  font-family: var(--font-mono, "Consolas", "Courier New", monospace);
+  font-size: 24px;
+  color: #4dd2ff;
+  font-weight: 500;
+  margin-top: 2px;
+  text-shadow: 0 0 12px rgba(77, 210, 255, 0.5);
+}
+/* KPI cards in image: y 12%..20%, centers at x: 11%, 32%, 52%, 73%, 91% */
+/* Callouts float in the header gap (y 2%..8%) just above each card */
+.dbi-kpi-callout--filing {
+  top: 1.5%;
+  left: 1%;
+  width: 18%;
+  animation-delay: 100ms;
+}
+.dbi-kpi-callout--company {
+  top: 1.5%;
+  left: 21.5%;
+  width: 18%;
+  animation-delay: 400ms;
+}
+.dbi-kpi-callout--city {
+  top: 1.5%;
+  left: 42%;
+  width: 18%;
+  animation-delay: 700ms;
+}
+.dbi-kpi-callout--top4 {
+  top: 1.5%;
+  left: 62.5%;
+  width: 18%;
+  animation-delay: 1000ms;
+}
+.dbi-kpi-callout--content {
+  top: 1.5%;
+  left: 81%;
+  width: 18%;
+  animation-delay: 1300ms;
+}
+
+/* ── Step 4: interaction demo + structural callouts ── */
+.dbi-click-indicator {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid #4dd2ff;
+  border-radius: 50%;
+  animation: dbi-click-pulse 1000ms ease-out infinite;
+  pointer-events: none;
+  z-index: 20;
+}
+.dbi-click-indicator--gd {
+  top: 56%;
+  left: 50%;
+}
+.dbi-arrow-annotation {
+  position: absolute;
+  font-family: var(--font-display-cn, "PingFang SC", "Microsoft YaHei", sans-serif);
+  font-size: 18px;
+  color: #4dd2ff;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  animation: dbi-fade-in 500ms ease 600ms forwards;
+  text-align: left;
+  line-height: 1.5;
+  padding: 8px 14px;
+  background: rgba(8, 20, 40, 0.85);
+  border: 1px solid rgba(77, 210, 255, 0.4);
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+.dbi-arrow-annotation--panel {
+  top: 48%;
+  left: 78%;
+}
+
+/* ── Step 4: structural callouts (bottom & year) ── */
+.dbi-struct-callout {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 16px;
+  background: rgba(8, 20, 40, 0.94);
+  border: 1px solid #4dd2ff;
+  border-left: 3px solid #4dd2ff;
+  font-family: var(--font-display-cn, "PingFang SC", "Microsoft YaHei", sans-serif);
+  color: #e8f0fa;
+  pointer-events: none;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 24px rgba(0, 20, 60, 0.5);
+  opacity: 0;
+  animation: dbi-callout-pop 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-width: 360px;
+}
+.dbi-struct-callout strong {
+  font-family: var(--font-mono, "Consolas", "Courier New", monospace);
+  font-size: 14px;
+  color: #4dd2ff;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.dbi-struct-callout span {
+  font-size: 14px;
+  color: rgba(220, 235, 250, 0.85);
+  line-height: 1.5;
+}
+.dbi-struct-callout--bus {
+  top: 85%;
+  left: 3%;
+  animation-delay: 200ms;
+}
+.dbi-struct-callout--year {
+  top: 62%;
+  left: 58%;
+  animation-delay: 500ms;
+}
+
+/* ── keyframes ── */
+@keyframes dbi-fade-up {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 40px)); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+@keyframes dbi-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes dbi-label-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes dbi-label-in-bottom {
+  from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes dbi-callout-pop {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes dbi-click-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(77, 210, 255, 0.6); transform: scale(1); }
+  100% { box-shadow: 0 0 0 30px rgba(77, 210, 255, 0); transform: scale(1.5); opacity: 0; }
+}

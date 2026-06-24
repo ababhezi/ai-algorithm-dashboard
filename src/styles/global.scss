@@ -1,0 +1,53 @@
+:root {
+  font-family: 'Avenir Next', 'PingFang SC', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+  color: #dcebff;
+  background: linear-gradient(180deg, #07111f 0%, #0a1a2f 48%, #0b1628 100%);
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #07111f;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.map-tooltip {
+  min-width: 180px;
+  font-size: 12px;
+  color: #dcebff;
+  line-height: 1.6;
+}
+
+.map-tooltip__title {
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}

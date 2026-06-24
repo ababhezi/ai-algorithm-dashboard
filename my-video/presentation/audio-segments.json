@@ -1,0 +1,242 @@
+[
+  {
+    "chapter": "coldopen",
+    "step": 1,
+    "text": "你猜，中国从2022年到今天，一共备案了多少个AI算法？",
+    "audio": "coldopen/1.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 2,
+    "text": "八千零八条。五千三百三十三家独立企业。覆盖了全国一百二十七座城市。",
+    "audio": "coldopen/2.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 3,
+    "text": "三年间，从月度备案量趋近于零，增长至当前每月数百条的规模，增长了近八十倍。",
+    "audio": "coldopen/3.mp3"
+  },
+  {
+    "chapter": "coldopen",
+    "step": 4,
+    "text": "今天，我们将这八千余条数据构建为一张交互式数据大屏。接下来的十分钟，我们将从四个维度深入分析——中国人工智能产业，究竟呈现出怎样的格局。",
+    "audio": "coldopen/4.mp3"
+  },
+  {
+    "chapter": "background",
+    "step": 1,
+    "text": "分析的第一步，是数据清洗。原始备案数据来自多个批次，格式和口径存在大量不一致。",
+    "audio": "background/1.mp3"
+  },
+  {
+    "chapter": "background",
+    "step": 2,
+    "text": "省份字段有三种等价写法：“北京”“北京市”“北京海淀”。城市字段带不带“市”后缀也缺乏统一规范。近百分之十的算法类别字段填的竟是“服务提供者”——这是企业角色，不是算法类别。",
+    "audio": "background/2.mp3"
+  },
+  {
+    "chapter": "background",
+    "step": 3,
+    "text": "我们构建了地名映射表进行归一化，用大语言模型修正了被污染的类别字段。行业字段缺失率百分之十二，技术代际缺失率百分之七点五。后续所有结论都建立在有效样本范围内。",
+    "audio": "background/3.mp3"
+  },
+  {
+    "chapter": "background",
+    "step": 4,
+    "text": "数据清洗完成。我们围绕四个核心问题展开分析。",
+    "audio": "background/4.mp3"
+  },
+  {
+    "chapter": "dashboard-intro",
+    "step": 1,
+    "text": "先看看大屏本身。",
+    "audio": "dashboard-intro/1.mp3"
+  },
+  {
+    "chapter": "dashboard-intro",
+    "step": 2,
+    "text": "大屏采用1920乘1080的深色科技风界面。深蓝底色，青蓝渐变勾勒面板边界，金色标识关键指标。整体布局遵循一条分析逻辑：从宏观到微观，从空间到时间，从描述到预测。",
+    "audio": "dashboard-intro/2.mp3"
+  },
+  {
+    "chapter": "dashboard-intro",
+    "step": 3,
+    "text": "布局自上而下分为六个功能区域：标题栏与指令面板、KPI指标卡、区域集群与城市排行、核心交互地图、右侧专题面板，以及底部的六模块总线。",
+    "audio": "dashboard-intro/3.mp3"
+  },
+  {
+    "chapter": "dashboard-intro",
+    "step": 4,
+    "text": "顶部五张KPI卡片概括全局基本盘。八千零八条备案总量、五千三百三十三家独立企业、一百二十七座覆盖城市——这三项定义产业规模。前四省集中度达七成三，内容生成类算法占比九成。仅这两项数字即可判断：行业高度集中，生成式AI占据绝对主导。",
+    "audio": "dashboard-intro/4.mp3"
+  },
+  {
+    "chapter": "dashboard-intro",
+    "step": 5,
+    "text": "大屏的核心价值在于交互能力。点击地图上任意省份，右侧面板即刻从全国总览切换为该省专属视图。再点击城市，可继续下钻。年份选择器从2022滑动至2026，全国版图由暗渐明。底部六个标签可自由切换专题分析模式。",
+    "audio": "dashboard-intro/5.mp3"
+  },
+  {
+    "chapter": "geo-distribution",
+    "step": 1,
+    "text": "第一个问题：地理分布呈现怎样的格局？",
+    "audio": "geo-distribution/1.mp3"
+  },
+  {
+    "chapter": "geo-distribution",
+    "step": 2,
+    "text": "全国三十二个省级行政区，前四名合计占比七成三。广东百分之二十六点六，北京百分之二十二点一，浙江百分之十二点六，上海百分之十二。前四之后出现断层式下降——第五名江苏仅百分之四点九。",
+    "audio": "geo-distribution/2.mp3"
+  },
+  {
+    "chapter": "geo-distribution",
+    "step": 3,
+    "text": "城市维度的集中度更为显著。前五城——北京、深圳、广州、上海、杭州——合计占比七成。其中深圳以百分之十二点七超越广州，与其在AI硬件和出海应用领域的产业优势直接相关。一百二十七座城市中，前十名之外合计仅约一成。",
+    "audio": "geo-distribution/3.mp3"
+  },
+  {
+    "chapter": "geo-distribution",
+    "step": 4,
+    "text": "按经济区划分：京津冀以北京为单核驱动，大湾区依托深圳广州双核，长三角以上海杭州双核运行最为平稳，成渝地区虽仅两百余条，却是西部唯一增长极。中部城市群基数仍低，但增长态势已现。",
+    "audio": "geo-distribution/4.mp3"
+  },
+  {
+    "chapter": "geo-distribution",
+    "step": 5,
+    "text": "核心判断：AI产业并非均衡分布，而是高度聚集于少数顶级城市群。人才密度、资本密度、应用场景密度三重因素共同驱动了空间极化。",
+    "audio": "geo-distribution/5.mp3"
+  },
+  {
+    "chapter": "trend-industry",
+    "step": 1,
+    "text": "第二个问题：产业发展态势呈现哪些特征？以下从时间序列、行业分布和技术代际三个角度逐一分析。",
+    "audio": "trend-industry/1.mp3"
+  },
+  {
+    "chapter": "trend-industry",
+    "step": 2,
+    "text": "首先看备案总量时间序列。2022年1月月度备案量仅为个位数，至2025年12月达到六百三十七条的高点。期间出现两次V形调整——均因政策窗口期变化触发，但每次下调后均迅速反弹。",
+    "audio": "trend-industry/2.mp3"
+  },
+  {
+    "chapter": "trend-industry",
+    "step": 3,
+    "text": "从月度增速来看：2023年平均每月新增五十九条，2024年跃升至一百二十九条，2025年进一步攀升至二百七十六条。三年三个台阶，增速逐年翻倍以上。",
+    "audio": "trend-industry/3.mp3"
+  },
+  {
+    "chapter": "trend-industry",
+    "step": 4,
+    "text": "行业分布方面，互联网企业占比百分之三十二居首位，IT制造业百分之二十一居次，信息技术服务百分之十四排第三。前三行业合计百分之六十七，高度集中。",
+    "audio": "trend-industry/4.mp3"
+  },
+  {
+    "chapter": "trend-industry",
+    "step": 5,
+    "text": "技术代际分布呈现显著的结构性升级。第一代专家规则系统仅占百分之二点七，第二代传统机器学习占百分之九点七，以Transformer架构为代表的第三代模型占百分之七十五，第四代Agent系统占百分之九点六。核心技术已全面转向生成式AI。",
+    "audio": "trend-industry/5.mp3"
+  },
+  {
+    "chapter": "trend-industry",
+    "step": 6,
+    "text": "态势判断：数量加速增长、行业高度集中、技术代际全面升级——三个特征叠加，意味着AI算法服务行业正处于规模化洗牌阶段。",
+    "audio": "trend-industry/6.mp3"
+  },
+  {
+    "chapter": "forecast",
+    "step": 1,
+    "text": "第三个问题：未来三至五年的发展趋势如何预测？",
+    "audio": "forecast/1.mp3"
+  },
+  {
+    "chapter": "forecast",
+    "step": 2,
+    "text": "我们基于前十七批备案数据拟合了三类模型。线性回归决定系数零点七八——线性假设被数据拒绝。二次多项式零点九一——捕捉到了加速趋势，但外推后会偏离。Prophet时系分解模型达到零点九七，置信区间最窄，综合表现最优。同时采用情景外推法，以2025年两千四百九十六条为锚点，叠加正负百分之八波动带生成三情景。",
+    "audio": "forecast/2.mp3"
+  },
+  {
+    "chapter": "forecast",
+    "step": 3,
+    "text": "选定Prophet作为主预测模型。2026年预计新增约三千三百条，2027年约五千五百条，2028年约七千六百条。地域维度上，一线城市占比将从六成降至五成二，二三线城市开始承接增量角色。",
+    "audio": "forecast/3.mp3"
+  },
+  {
+    "chapter": "forecast",
+    "step": 4,
+    "text": "需要注意的是，以上预测属于基准情景下的乐观估计。假设前提包括：政策保持稳定、算力供给持续增长、大模型API价格延续下行。三项前提中任一变量出现不利变化，增速均需相应下调。",
+    "audio": "forecast/4.mp3"
+  },
+  {
+    "chapter": "conclusions",
+    "step": 1,
+    "text": "第四个问题：我国AI算法服务行业是否存在结构性短板？",
+    "audio": "conclusions/1.mp3"
+  },
+  {
+    "chapter": "conclusions",
+    "step": 2,
+    "text": "短板一，地域集聚严重。数据显示广东与北京两省市合计占比近百分之五十，中西部合计不足百分之五。部分省份备案数为零，数据断崖式集中。不是没有需求，是缺乏渠道和激励。",
+    "audio": "conclusions/2.mp3"
+  },
+  {
+    "chapter": "conclusions",
+    "step": 3,
+    "text": "短板二，传统行业渗透不足。ICT行业与科技服务业合计占比百分之七十六，制造业仅百分之零点三，金融百分之零点三，教育百分之零点一。这些行业的AI应用仍游离于备案体系之外，构成大片合规增量空间。",
+    "audio": "conclusions/3.mp3"
+  },
+  {
+    "chapter": "conclusions",
+    "step": 4,
+    "text": "短板三，备案脉冲剧烈。每一次政策窗口开启，企业集中备案；政策明确后，备案量迅速回落。这种脉冲模式既造成行政审核资源的周期性浪费，也干扰行业主体对市场趋势的稳定判断。",
+    "audio": "conclusions/4.mp3"
+  },
+  {
+    "chapter": "conclusions",
+    "step": 5,
+    "text": "短板四，巨头壁垒正在形成。百分之七十八的企业仅备案单一算法，腾讯、字节跳动、百度三家企业合计即占备案总量近半。持续备案企业占比逐年下降——从2023年的百分之二十八，已降至不足百分之十。",
+    "audio": "conclusions/5.mp3"
+  },
+  {
+    "chapter": "conclusions",
+    "step": 6,
+    "text": "以上四个短板，揭示了备案数据背后的产业生态结构性问题。下一章，我们对应提出四条政策建议。",
+    "audio": "conclusions/6.mp3"
+  },
+  {
+    "chapter": "recommendations",
+    "step": 1,
+    "text": "四条政策建议，对症四个短板。地域短板——双核占百分之五十，中西部不足百分之五。行业渗透——传统行业覆盖率仅百分之零点八。备案脉冲——波幅超二百倍。巨头壁垒——百分之七十八企业仅备单项，三家巨头占据近半。",
+    "audio": "recommendations/1.mp3"
+  },
+  {
+    "chapter": "recommendations",
+    "step": 2,
+    "text": "建议一，打破地域集聚，推动备案生态向中西部扩散。具体措施包括：实施属地化备案补贴政策，在成渝、武汉、西安等区域节点城市设立AI备案分中心，将备案服务下沉至企业所在地，降低企业跨区域办理的制度成本。",
+    "audio": "recommendations/2.mp3"
+  },
+  {
+    "chapter": "recommendations",
+    "step": 3,
+    "text": "建议二，加速传统行业渗透，释放第二增长极。针对制造业、金融业、医疗健康等备案覆盖率较低的行业，出台专项备案指引，在确保监管覆盖到位的前提下，为这些行业提供清晰的合规路径和操作指南。",
+    "audio": "recommendations/3.mp3"
+  },
+  {
+    "chapter": "recommendations",
+    "step": 4,
+    "text": "建议三，建立备案与政策的联动响应机制，熨平备案脉冲。核心措施为建立备案批次的季度预告制度，提前向行业公布下一批次的时间窗口和评审侧重，帮助企业合理安排备案节奏，避免出现扎堆申请或集体观望的极端行为模式。",
+    "audio": "recommendations/4.mp3"
+  },
+  {
+    "chapter": "recommendations",
+    "step": 5,
+    "text": "建议四，扶持中小AI企业，防范行业壁垒加速固化。对中小企业首次备案开设绿色通道并给予材料准备补贴，对累计备案三个及以上算法的企业提供优先审批通道。目标在于保持行业生态的开放性与流动性，防止市场集中度持续向头部企业倾斜。",
+    "audio": "recommendations/5.mp3"
+  },
+  {
+    "chapter": "recommendations",
+    "step": 6,
+    "text": "以上是我组对AI算法服务商行业的全部研究成果汇报。四条短板、四条建议，每一条均源于数据大屏中的具体数据指标。感谢各位评审老师。",
+    "audio": "recommendations/6.mp3"
+  }
+]
